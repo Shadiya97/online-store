@@ -1,30 +1,51 @@
+Online Store Angular App
 
-# AccountManagementApp
+Welcome to the Online Store Angular app! This app is built using Angular CLI version 15.0.4 and incorporates essential features like a login page, registration page, and an account page. Below, you'll find a detailed guide on the functionalities and technologies used in this project.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.0.4.
+Features:
 
-## Development server
+Registration Page:
+Users can register for an account by providing a new email ID and a password containing at least 6 characters.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Login Page:
+Registered users can log in by providing their email and password.
+Successful login redirects users to the account page, which is protected by the CanActivate Auth Guard. Unauthorized users are redirected to the login page.
 
-## Code scaffolding
+Account Page:
+Users can update their profile display name.
+Users can change their password.
+Logout option is available.
+If the password is changed, the user is required to log in again.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Backend - Firebase:
+Firebase is used as the backend for this application.
+Firebase Authentication REST API is utilized for user registration, sign-in, updating profile display names, and changing passwords.
 
-## Build
+Styling:
+Styling is done using Bootstrap and Angular Material.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Snackbar Notifications:
+Angular Material Snackbars are used to display messages upon success or error in API requests.
+Error handling is implemented for each API request, providing informative messages (e.g., attempting to register with an existing email).
 
-## Running unit tests
+Routing:
+Angular routing is employed to navigate between different pages.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Model Files:
+model.ts files are present in the app to define the types of API responses in Firebase requests.
 
-## Running end-to-end tests
+A constant file is included for storing the Firebase base URLs.
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+Prerequisites
+Node.js and npm installed.
+Angular CLI version 15.0.4 globally installed.
 
-## Further help
+Getting Started
+Clone the repository.
+Run npm install to install dependencies.
+Run ng serve to start the development server.
+Navigate to http://localhost:4200/ in your browser.
+Feel free to explore the codebase and customize the app according to your needs!
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
-
-
+License
+This project is licensed under the MIT License. Feel free to use, modify, and distribute the code as per the license terms. If you encounter any issues or have suggestions, please open an issue.
