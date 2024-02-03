@@ -34,6 +34,8 @@ Angular routing is employed to navigate between different pages.
 Model Files:
 model.ts files are present in the app to define the types of API responses in Firebase requests.
 
+A constant file is included for storing the Firebase base URLs.
+
 Prerequisites
 Node.js and npm installed.
 Angular CLI version 15.0.4 globally installed.
