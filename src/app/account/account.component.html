@@ -1,40 +1,51 @@
-
 <div class="container">
-    <div class="row">
-      <div class="col-md-6 col-md-offset-3">
-        <h2>Welcome!</h2>
-        
-          <p>You are logged in as <strong>{{ userData?.email }}</strong> </p>
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <h2>Welcome {{userName}}!</h2>
 
-  <div *ngIf="!editMode">
-    <button class="btn btn-primary" (click)="editMode=!editMode" >Change Password</button> | 
-    <button (click)="onLogout()" class="btn btn-danger">Logout</button>
-  </div>
-          
+      <p>You are logged in as <strong>{{ userData?.email }}</strong> </p>
 
-        <div *ngIf="editMode">
-            
-          <form (ngSubmit)="onSubmit(pwChangeForm)" #pwChangeForm="ngForm">
+      <div>
+        <button class="btn btn-primary" (click)="onUpdateName()">Update Display Name</button> |
+        <button class="btn btn-primary" (click)="onChangePassword()">Change Password</button> |
+        <button (click)="onLogout()" class="btn btn-danger">Logout</button>
+      </div>
 
-            <div class="form-group">
+      <div *ngIf="showNameField" class="form-margin">
+        <form (ngSubmit)="updateName(updateNameForm)" #updateNameForm="ngForm">
+
+          <div class="form-group">
+            <label for="displayName">Display Name:</label>
+            <input type="text" id="displayName" name="displayName" class="form-control" [(ngModel)]="userName" required>
+          </div>
+
+          <div class="form-group">
+            <button type="submit" class="btn btn-success" [disabled]="updateNameForm.invalid">Save</button> |
+            <button type="button" class="btn btn-danger" (click)="onUpdateName()">Cancel</button>
+          </div>
+        </form>
+      </div>
+
+      <div *ngIf="showPasswordField" class="form-margin">
+        <form (ngSubmit)="updatePassword(pwChangeForm)" #pwChangeForm="ngForm">
+
+          <div class="form-group">
             <label for="newPassword">New Password:</label>
-            <input type="password" id="newPassword" name="newPassword" class="form-control" ngModel #newPassword="ngModel" required minlength="6">
-            <span class="help-block" *ngIf="newPassword.invalid && newPassword.touched">The password requires a minimum length of 6 characters.</span>
-            </div>
+            <input type="password" id="newPassword" name="newPassword" class="form-control" ngModel
+              #newPassword="ngModel" required minlength="6">
+            <span class="help-block" *ngIf="newPassword.invalid && newPassword.touched">The password requires a minimum
+              length of 6 characters.</span>
+          </div>
 
-            <div class="form-group">
-                <button type="submit" class="btn btn-success" [disabled]="pwChangeForm.invalid">Save</button> | 
-                <button type="button" class="btn btn-danger" (click)="editMode=!editMode" >Cancel</button>
-            </div>
-           
-          </form>
-        </div>
-          
-        
-         
-        </div>
-  
+          <div class="form-group">
+            <button type="submit" class="btn btn-success" [disabled]="pwChangeForm.invalid">Save</button> |
+            <button type="button" class="btn btn-danger" (click)="onChangePassword()">Cancel</button>
+          </div>
+
+        </form>
+      </div>
+
+
     </div>
+  </div>
 </div>
- 
-  

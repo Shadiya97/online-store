@@ -34,7 +34,7 @@ onSubmit(registerform:NgForm){
         }
       ).subscribe(resData => {
         console.log(resData);
-        this.snackBar.open('User registration successful!', 'Close', {
+        this.snackBar.open('User registration successful! You can login now', 'Close', {
           duration: 5000, // Duration in milliseconds
           horizontalPosition: 'center',
           verticalPosition: 'bottom',
