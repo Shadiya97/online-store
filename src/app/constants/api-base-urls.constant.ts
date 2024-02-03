@@ -1,3 +1,5 @@
+// Firebase Configuration Constants
+
 export const FIREBASE_AUTH_BASEURL = 'https://www.googleapis.com/identitytoolkit/v3/relyingparty';
 export const FIREBASE_IDENTITY_TOOLKIT_BASEURL = 'https://identitytoolkit.googleapis.com/v1/accounts:update';
 export const FIREBASE_LOOKUP_BASEURL = 'https://identitytoolkit.googleapis.com/v1/accounts:lookup';

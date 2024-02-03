@@ -11,19 +11,25 @@ import { FIREBASE_AUTH_BASEURL, FIREBASE_KEY } from '../constants/api-base-urls.
   templateUrl: './registration.component.html',
   styleUrls: ['./registration.component.css']
 })
+
 export class RegistrationComponent {
 
   errorMessage: string = null;
 
   constructor(private router: Router, private http: HttpClient, private snackBar: MatSnackBar) { }
-
+  // onSubmit - Handles the form submission for user registration.
   onSubmit(registerform: NgForm) {
+
+    // Check if the form is valid before proceeding
     if (!registerform.valid) {
       return;
     }
+
+    // Extract email and password from the form values
     const email = registerform.value.email;
     const password = registerform.value.password;
 
+    // Make a POST request to Firebase API for user registration
     this.http
       .post<AuthResponseData>(
         `${FIREBASE_AUTH_BASEURL}/signupNewUser?key=${FIREBASE_KEY}`,
@@ -34,7 +40,11 @@ export class RegistrationComponent {
         }
       ).subscribe({
         next: (resData) => {
+
+          // Handle successful registration
           console.log(resData);
+
+          // Display a success notification
           this.snackBar.open('User registration successful! You can login now', 'Close', {
             duration: 5000, // Duration in milliseconds
             horizontalPosition: 'center',
@@ -43,11 +53,16 @@ export class RegistrationComponent {
           this.router.navigate(['/login']);
         },
         error: (errorRes) => {
+          // Handle registration errors
           console.log(errorRes);
           this.errorMessage = 'An unknown error occurred!';
+
+          // Check if error response and specific error code are present
           if (!errorRes.error || !errorRes.error.error) {
             return
           }
+
+          // Handle specific error cases
           switch (errorRes.error.error.message) {
             case 'INVALID_EMAIL':
               this.errorMessage = 'Invalid email address. Please check the email format and try again.';
@@ -63,6 +78,7 @@ export class RegistrationComponent {
       })
   }
 
+  // Navigates to the login page when the "Switch to Login" button is clicked.
   onClickLogin() {
     this.router.navigate(['/login'])
   }
